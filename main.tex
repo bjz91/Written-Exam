@@ -11,6 +11,7 @@
 \usepackage{mdwlist} % Tight lists
 \usepackage{enumerate} % Enabling options for list environments
 \usepackage{float}
+\usepackage{multirow}
 
 
 % Header
@@ -80,13 +81,67 @@
 \section{What factors might you be concerned about before using PurpleAir data?}
 The most important factor having to be concerned about before using the data of the PurpleAir monitoring network is the quality of the PM\tsub{2.5} measurements. The methods of PM\tsub{2.5} measurement used in regulatory monitors are Federal Reference Method (FRM) or Federal Equivalent Method (FEM). This indicates that they have been developed to a clearly defined standard for PM\tsub{2.5} and have completed a rigorous testing and analysis protocol before they can be used to monitor compliance for the appropriate primary and/or secondary National Ambient Air Quality Standards (NAAQS) \citep{hall2014integrating}. On the contrary, no standard or protocol has been established for the newly emerged low-cost sensors, so their qualities cannot be guaranteed to assess compliance for NAAQS. For example, The maximum consistency errors of PurpleAir sensors (PA-II: Dual Laser Air Sensors) are $\pm$10\% in the range of 100 -- 500 $\mu g/m^3$ and $\pm$10 $\mu g/m^3$ in the range of 0 --100 $\mu g/m^3$. In this study, we plan to use two strategies to minimize the adverse effect of the low quality of PurpleAir sensors and to incorporate their measurements in the PM\tsub{2.5} prediction models:
 \begin{enumerate*}[{[1)]}]
-    \item \textbf{Using PurpleAir measurements as a predictor variable (an independent variable)}: In the benchmark approach of Aim 2, we will use the interpolated PurpleAir PM\tsub{2.5} measurements (by Equation 3) as a predictor variable in the PM\tsub{2.5} prediction model (Equation 4). This approach will not only utilize the spatial details of the measurements but also reduce the adverse effects of the measurement errors on the regression stage of the model. However, this approach will not increase the sample size of the dependent variable, so the model performance will still be limited if there are not enough regulatory PM\tsub{2.5} observations in the study domain. 
-    \item \textbf{Calibrating the measurements and utilizing them as the dependent variable}: In order to increase the sample size of the dependent variable and fully utilizing the spatial details of the PurpleAir measurements, we plan to calibrate these data by the regulatory observations. The difficulties include the determination of an appropriate ``collocated'' distance between a PurpleAir sensor and the regulatory stations and the reliable extrapolation of the calibration coefficients. For the former problem, we will examine a series of distances and choose the most suitable one by cross-validation of the calibration model. For another problem, apart from the proposed kriging with external drift (KED) model, we will also test other interpolation methods (such as variational interpolation \citep{turk1999shape}) to obtain reasonable spatial representations of the calibration coefficients. 
+    \item \textbf{Using PurpleAir measurements as a predictor variable}: In the benchmark approach of Aim 2, we will use the interpolated PurpleAir PM\tsub{2.5} measurements (by Equation 3) as a predictor variable in the PM\tsub{2.5} prediction model (Equation 4). This approach will not only utilize the spatial details of the measurements but also reduce the adverse effects of the measurement errors on the regression stage of the model. However, this approach will not increase the sample size of the dependent variable, so the model performance will still be limited if there are not enough regulatory PM\tsub{2.5} observations in the study domain. 
+    \item \textbf{Calibrating and utilizing the measurements as the dependent variable}: In order to increase the sample size of the dependent variable and fully utilizing the spatial details of the PurpleAir measurements, we plan to calibrate these data by the regulatory observations. The difficulties include the determination of an appropriate ``collocated'' distance between a PurpleAir sensor and the regulatory stations and the reliable extrapolation of the calibration coefficients. For the former problem, we will examine a series of distances and choose the most suitable one by cross-validation of the calibration model. For another problem, apart from the proposed kriging with external drift (KED) model, we will also test other interpolation methods (such as variational interpolation \citep{turk1999shape}) to obtain reasonable spatial representations of the calibration coefficients. 
 \end{enumerate*}
 
+\section{How you will determine whether or not given \texorpdfstring{PM\tsub{2.5}}{PM2.5} exposures are ``reliable''?}
+In this study, the ``reliability'' of PM\tsub{2.5} exposures are defined from three aspect: (1) spatiotemporal completeness, (2) statistical reliability, and (3) improvement of actual reliability in populated areas.
+\begin{itemize*}
+    \item First, our PM\tsub{2.5} exposure dataset has 1-km, daily resolutions with complete coverage in space and time. In general, the routine measurements made by local and federal monitoring programs cannot provide continuous, daily availability, which limits their usefulness for studies of associations between health outcomes and daily variations in pollutant concentrations \citep{sarnat2015fine}. On the contrary, the spatiotemporal completeness enables the application of our exposure dataset to the health analyses of associations between health outcomes and short-term pollution exposure. 
+    \item In addition, the good statistical performance of our prediction models is an important standard to assess the reliability of the exposure dataset. We will use cross-validations (CV) as the evaluation method of model performance. This method involves partitioning the input data into complementary subsets, performing the analysis on one subset (called the \textit{training set}), and validating the analysis on the other subset (called the \textit{validation set} or \textit{testing set}) \citep{kohavi1995study}. It aims to test the model's ability to predict new data that were not used in estimating it, rather than the model fitting ability, in order to avoid the problem of overfitting \citep{hawkins2004problem}. Similar studies using statistical models \citep{kloog2011assessing, kloog2014new} and machine learning models \citep{di2016assessing, hu2017estimating} obtain PM\tsub{2.5} predictions with CV R$^2$ of $\sim$0.8 and root-mean-square error (RMSE) of $\sim$3 $\mu g/m^3$. The preliminary results of this study showed that our prediction models are expected to have similar or even better statistical performance than the previous studies. 
+    \item Admittedly, good statistical performance does not necessarily mean good actual performance. Specifically, the cross-validation can only evaluate the actual model performance in the areas with regulatory stations, such as cities and populated areas. In other words, the model performance is unknown in the areas without regulatory stations, such as wild areas. However, since our goal is to analyze the health effect of PM\tsub{2.5} on the population, the unknown data quality in wild areas, where there are few populations exposing to the pollutant, are expected to have less influence on our estimated health effects. Moreover, the low-cost sensors will further fill in the gaps of regulatory stations, providing more spatial details of local pollution levels in populated areas. With high cross-validation performance and the supplementation of low-cost sensors, our prediction models are expected to guarantee the actual reliability of exposure assessment for the majority of population exposing to PM\tsub{2.5} pollution. 
+\end{itemize*}
 
-% ----------- Figures ----------- %
+\section{Temporal and spatial misalignment among the proposed data sources}
+\begin{enumerate*}[{[a)]}]
+    \item Table \ref{tab:res} shows the spatial and temporal resolutions of the data sources used in this study, including satellite/chemical transport model (CTM) data, meteorological data, land-use data, and point data (PM\tsub{2.5} emissions and concentrations). 
+    \item All datasets with different spatial and temporal resolutions will be matched and integrated into the 1-km, daily grid of MAIAC AOD. All models in Aims 1 and 2 will also be based on this grid. {
+        \begin{itemize*}
+            \item \textbf{Spatial integration}: For the datasets with spatial resolutions greater than or equal to 1-km (\textit{e.g.,} CMAQ simulations, meteorological data, and MODIS cloud/snow parameters), geostatistical interpolations (inverse distance weighting \citep{bartier1996multivariate} or kriging interpolation \citep{oliver1990kriging}) will be applied. For the datasets with finer resolutions (\textit{e.g.,} ASTER elevation and MODIS NDVI), a simple down-sampling process will be conducted. For the LandScan population, each data point will be assigned to its nearest MAIAC grid cell. The population of all points falling in that grid cell will then be summarized. For the point datasets (\textit{e.g.,} NEI PM\tsub{2.5} emissions, EPA, NAPS, and PurpleAir PM\tsub{2.5} measurements), each monitoring site will be assigned to the MAIAC grid cell where it is located. The average PM\tsub{2.5} will be calculated when multiple points fall in the same grid cell. 
+            \item \textbf{Temporal integration}: For the datasets with temporal resolutions less than 1 day (\textit{e.g.,} MAIAC AOD, CMAQ simulations, MODIS cloud/snow parameters, meteorological data, and PM\tsub{2.5} ground measurements), daily average values will be calculated. For MODIS NDVI, the 16-day average NDVI values will be replicated in each day of this period. The land-use data and NEI PM\tsub{2.5} emissions can be treated as temporally invariant in the annual PM\tsub{2.5} prediction models. 
+        \end{itemize*}
+    \item For the spatial integration, major assumptions come from the oversampling processes (\textit{i.e.,} geostatistical interpolations). For example, the inverse distance weighting (IDW) is based on an assumption that the value at an unsampled point can be approximated as a weighted average of values at points within a certain cut-off distance, or from a given number of the closest points \citep{bartier1996multivariate}; Kriging interpolation is based on a concept of random functions: the values in a surface are assumed to be the realizations of a random function with a certain spatial co-variance \citep{oliver1990kriging}. Each of the interpolation methods has limited applicability. Therefore, careful examination and proper choice of the method and its parameters for each dataset are important to avoid misalignment and improve the final results \citep{mitas1999spatial}.
+    
+    For the temporal integration, major assumptions come from the temporal invariability of some parameters. For example, we assume that the study domain has similar NDVI values in a 16-day period; we also assume that other land-use parameters (elevation, population, and road network) are stable in a year. Even though these assumptions may induce potential errors, these errors are expected to have much less influence than the major sources of error (such as inaccurate measurements and model misspecification) \citep{xiao2017full}.
+    }
+\end{enumerate*}
+
+\section*{To Dr. Vaughn Barry}
+\setcounter{section}{0}
+
+\section{How could short-term exposure to \texorpdfstring{PM\tsub{2.5}}{PM2.5} cause acute kidney problems?}
+
+% ----------- Figures & Tables ----------- %
 \newpage
+\begin{table}[H]
+    \centering
+    \caption{Spatial and temporal resolutions of the data sources}
+    \begin{tabular}{c|c|c|c}
+        \hline
+        \multicolumn{2}{c|}{Data Source} & Spatial Resolution & Temporal Resolution \\
+        \hline
+        \multirow{2}{*}{Satellite/CTM} & MAIAC AOD & 1 km & $<$ 1 day \\
+        & CMAQ Simulation & 12 km & 1 hour \\
+        \hline
+        \multirow{4}{*}{Meteorology} & MODIS Cloud & 1 km & $<$ 1 day \\
+        & MODIS Snow & 0.05$^{\circ}$ ($\sim$ 5 km) & $<$ 1 day \\
+        & NARR & 0.25$^{\circ}$ ($\sim$ 25 km) & 3 hours\\
+        & NLDAS & 0.125$^{\circ}$ ($\sim$ 13 km) & 1 hour \\
+        \hline
+        \multirow{4}{*}{Land-Use} & ASTER Elevation & 1$^{\prime\prime}$ ($\sim$ 30 m) & -- \\
+        & LandScan Population & 900 m & 1 year \\
+        & MODIS NDVI & 500 m & 16 days \\
+        & ESRI Road Network (vector) & -- & 1 year \\
+        \hline
+        \multirow{3}{*}{Point Data} & NEI PM\tsub{2.5} Inventory  & -- & 3 years \\
+        & EPA/NAPS PM\tsub{2.5} & -- & 1 day \\
+        & PrupleAir PM\tsub{2.5} & -- & $<$ 1 hour \\
+        \hline
+    \end{tabular}
+    \label{tab:res}
+\end{table}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{img/no_aod.png}
