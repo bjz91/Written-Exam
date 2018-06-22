@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage[left=0.8in,right=0.8in,top=0.7in,bottom=0.7in]{geometry}
-\usepackage[numbers]{natbib}
+\usepackage[numbers,compress]{natbib}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -14,6 +14,7 @@
 \usepackage{multirow}
 \usepackage{dashrule}
 \usepackage[version=4]{mhchem}
+\usepackage{threeparttable}
 
 
 % Header
@@ -36,9 +37,14 @@
 
 \begin{document}
 
+% --------------------------------------------------------------------------- %
+
 \setcounter{section}{0}
 
+\section*{Questions from Dr. Avani Wildani}
+
 \section{In a single-sentence, how would you define your research question?}
+What is the relationship between short-term PM\tsub{2.5} exposure and renal disease and how do the improved PM\tsub{2.5} exposures derived from satellite and ground measurements contribute to the exploration of this relationship? 
 
 \section{Missing satellite aerosol optical depth (AOD) data in Aim 1}
 \begin{enumerate*}[{[a)]}]
@@ -65,9 +71,18 @@
 \end{enumerate*}
 
 \section{In your words, describe the specific parameter selection strategy for Equation 2}
+\begin{enumerate*}[{[1)]}]
+    \item Because there are limited parameters ($<$ 20) in our PM\tsub{2.5} prediction model, the first strategy will be a manual, iterative variate selection according to the variable importance values. Specifically, in each iteration of random forest model fitting, the variable with the lowest importance value will be discarded, until the model's cross-validation R$^2$ starts to decrease, that is, the removal of the variable does not contribute to a better model performance. Using this strategy, the preliminary analysis of this study removed the precipitation and relative humidity from the PM\tsub{2.5} and obtained a simplified model with useful predictors and a higher CV R$^2$. 
+    \item With the situations where this simple strategy cannot candle (such as much more parameters), we will consider using other well-developed but more computationally intensive variable selection strategies, such as the algorithm provided by an R package ``\texttt{VSURF}''. This algorithm is based on a preliminary ranking of the parameters using the variable importance values and proceeds using a stepwise forward strategy for variable introduction \citep{genuer2015vsurf}.
+\end{enumerate*}
+
+
+% --------------------------------------------------------------------------- %
 
 \hdashrule{\textwidth}{0.1pt}{3mm 3pt 1mm 3pt}
 \setcounter{section}{0}
+
+\section*{Questions from Dr. Stefanie Sarnat}
 
 \section{How generalizable do you anticipate the \texorpdfstring{PM\tsub{2.5}}{PM2.5} models in Aims 1 and 2 to be?}
 \begin{enumerate*}[{[a)]}]
@@ -111,8 +126,13 @@ In this study, the ``reliability'' of PM\tsub{2.5} exposures is defined from thr
     }
 \end{enumerate*}
 
+
+% --------------------------------------------------------------------------- %
+
 \hdashrule{\textwidth}{0.1pt}{3mm 3pt 1mm 3pt}
 \setcounter{section}{0}
+
+\section*{Questions from Dr. Vaughn Barry}
 
 \section{How could short-term exposure to \texorpdfstring{PM\tsub{2.5}}{PM2.5} cause acute kidney problems?}
 Acute renal failure (ARF) is an abrupt loss of kidney function that develops within 7 days. Generally, it occurs because of damage to the kidney tissue caused by decreased kidney blood flow (kidney ischemia) from any cause (\textit{e.g.,} low blood pressure), exposure to substances harmful to the kidney, an inflammatory process in the kidney, or an obstruction of the urinary tract that impedes the flow of urine. Interest in the nonpulmonary targets of particulate air pollutants has been increasing since the demonstration that inhaled ultrafine particles (UFP) can affect distant organs either by direct passage across the alveolar capillary barrier and/or by the release of soluble inflammatory mediators and markers of oxidative stress into the systemic circulation, which may affect several distant organs including the kidney \citep{nemmar2004possible, oberdorster2005nanotoxicology, peters2006translocation, vermylen2005ambient, nemmar2013recent}. 
@@ -133,7 +153,7 @@ Furthermore, it is plausible that one or more of the following mechanistic pathw
 \section{Heterogeneity of exposure-health outcome results across cities or states}
 \begin{enumerate*}[{[1)]}]
     \item \textbf{Sample size}: Different cities may have different sample sizes (in this case, the number of emergency department visits). A small sample size can lead to a less power of the model and a larger confident interval of the estimated effect, which would increase the uncertainty of the result. In addition, a small sample size would also lead to selection bias, that is, the study population is meaningfully different from the source population. This would also induce large errors to the estimated effect, leading to heterogeneity in results across individual cities. 
-    \item \textbf{Socioeconomic characteristics}: Populations in different cities may have different distributions of socioeconomic characteristics, which would be the potential effect modifiers of the associations between PM\tsub{2.5} exposure and renal outcomes. These characteristics include age, sex, race, education level, income level, marital status, occupation, religion, birth rate, death rate, average size of a family, average age at marriage, \textit{etc.} Specifically, \citet{janssen2002air} and \citet{medina2006effect} found that the proportion of central air conditioning modified the effect of PM\tsub{10} on hospital admissions for cardiorespiratory disease, a possible reason for which might be the lower ventilation rates of homes with air conditioning \citep{suh1992personal}. 
+    \item \textbf{Socioeconomic characteristics}: Populations in different cities may have different distributions of socioeconomic characteristics, which would be the potential effect modifiers of the associations between PM\tsub{2.5} exposure and renal outcomes. These characteristics include age, gender, ethnicity, education level, income level, marital status, occupation, religion, birth rate, death rate, average size of a family, average age at marriage, \textit{etc.} Specifically, \citet{janssen2002air} and \citet{medina2006effect} found that the proportion of central air conditioning modified the effect of PM\tsub{10} on hospital admissions for cardiorespiratory disease, a possible reason for which might be the lower ventilation rates of homes with air conditioning \citep{suh1992personal}. 
     \item \textbf{PM\tsub{2.5} sources}: The same PM\tsub{2.5} component may come from different sources. For example, secondary sulfate (\ce{SO^{2-}_4}) can be generated from sulfur dioxide (\ce{SO2}) emissions from power plants, industrial facilities, and traffic sources. Particulate matters from different sources may have different levels of health effects. For example, studies \citep{laden2000association, zeka2005short} found that PM\tsub{10} and PM\tsub{2.5} from mobile sources were associated with a higher mortality risk than particulate matters from other sources. the There is also evidence that the hazardous nature of combustion-related PM (from both mobile and stationary sources) is more consistent than that for PM from other sources \citep{world2007health}.
     \item \textbf{Synergy effect of gaseous pollutants}: Gaseous pollutants have health effects of their own and may act in concert with PM to cause health effects (\textit{e.g.,} ozone). Any consideration of the health effects of different components and sources of PM must consider how gaseous pollutants may affect the toxicity of PM constituents \citep{adams2015particulate}.
     \item \textbf{Other potential confounders}: Some well-understand confounders, such as season, day of week, holidays, temperatures, and time trends, will be selected \textit{a priori} as the covariates in our time-series model. However, there may still be other potential confounders affecting the relationship between PM\tsub{2.5} exposure and renal disease, leading to heterogeneity in results across individual cities. 
@@ -154,10 +174,10 @@ Furthermore, it is plausible that one or more of the following mechanistic pathw
     \item An ideal PM\tsub{2.5} exposure dataset should include: {
         \begin{itemize*}
             \item \textbf{Pollutant sources}: Where are the PM\tsub{2.5} coming from, at what rate? What are the indoor and outdoor PM\tsub{2.5} concentrations? What is the composition of these particulate matters?
-            \item \textbf{Population of concern}: Who are the individuals that are exposed? How are the factors of the population relating to the dose of pollutant (\textit{e.g.,} age, sex, body weight, \textit{etc.})? 
+            \item \textbf{Population of concern}: Who are the individuals that are exposed? How are the factors of the population relating to the dose of pollutant (\textit{e.g.,} age, gender, body weight, \textit{etc.})? 
             \item \textbf{Exposure pathways}: Through which pathways is the population exposed to PM\tsub{2.5}? What proportion of PM\tsub{2.5} is exposed through inhalation?
             \item \textbf{Activity patterns}: How much time the population stay indoor and outdoor? What are the population's exposure duration and frequency? 
-            \item \textbf{Inhalation rates}: What are the inhalation rates of the population according to the age, sex and activity pattern?
+            \item \textbf{Inhalation rates}: What are the inhalation rates of the population according to the age, gender and activity pattern?
         \end{itemize*}
     }
 \end{enumerate*}
@@ -180,35 +200,60 @@ Furthermore, it is plausible that one or more of the following mechanistic pathw
     }
 \end{itemize*}
 
+
+% --------------------------------------------------------------------------- %
+
+\hdashrule{\textwidth}{0.1pt}{3mm 3pt 1mm 3pt}
+\setcounter{section}{0}
+
+\section*{Questions from Dr. Qiang Zhang}
+
+\section{\texorpdfstring{PM\tsub{2.5}}{PM2.5} exposure and estimated glomerular filtration rate (eGFR)}
+\begin{enumerate*}[{[a)]}]
+    \item Glomerular filtration rate (GFR), as a measure of the function of kidney, describes the flow rate of filtered fluid through the kidney. GFR is difficult to be measured in clinical practice \citep{stevens2009measured}, but it can be estimated from serum levels of endogenous filtration markers, such as creatinine, in a formula with other factors such as age, ethnicity, gender, height, and weight \citep{levey1999more}. This calculated measure is called the estimated GFR or eGFR. GFR is traditionally considered the best overall index of renal function in health and disease \citep{smith1951diseases} because the level of GFR and its magnitude of change over time are vital to the detection of kidney disease and understanding its severity, which is helpful in making decisions about diagnosis, prognosis, and treatment of kidney disease. For example, there is evidence \citep{zhang2012prevalence} that with GFR below $60\;mL/min/1.73\;m^2$, the prevalence of complications of chronic kidney disease increases. 
+    
+    \item Creatinine is a breakdown product of creatine phosphate in muscle, and is usually produced at a fairly constant rate by the body (depending on muscle mass). As creatinine is produced, it is filtered through the kidneys and excreted in urine without reabsorption. The kidneys' ability to handle creatinine is called the creatinine clearance rate. If the filtration in the kidney is deficient, creatinine blood levels rise. Therefore, serum creatinine is an important indicator of renal health. 
+    
+    % -- Valuable reference: https://www.medicinenet.com/script/main/art.asp?articlekey=12551 -- %
+    Creatinine clearance is usually determined from measurement of creatinine in a 24-hour urine specimen and from a serum specimen obtained during the same collection period \citep{traynor2006measure}. The rate of creatinine clearance is estimated by (i) noting the volume of urine excreted in a given time period, such as 24 hours; (ii) measuring the amount of creatinine in the excreted urine; (iii) comparing creatinine in urine with the amount of creatinine circulating in the blood. If the kidneys are not removing enough creatinine, the level of creatinine in the urine will fall, and consequently the level of creatinine in the blood will rise. In detail, calculating creatinine clearance rate ($C_{Cr}$) requires the following information:
+    \begin{itemize*}
+        \item $Vdt$ -- The average volume in milliliters ($mL$) of urine excreted in one minute ($min$)
+        \item $U_{Cr}$ -- The average amount of creatinine in milligrams ($mg$) in one liter ($L$) of excreted urine
+        \item $P_{Cr}$ -- The average amount of creatinine in milligrams ($mg$) in one deciliter ($dL$) of blood
+    \end{itemize*}
+    The creatinine clearance rate $C_{Cr}$ is arrived at 
+    \begin{equation*}
+        C_{Cr} = \frac{U_{Cr}\times Vdt}{P_{Cr}}
+    \end{equation*}
+    The rate is expressed in milliliters per minute ($mL/min$). For adults younger than 40, normal levels are typically in the range of 107 to 139 $mL/min$ for male and 87 to 107 $mL/min$ for female.
+    % https://www.urmc.rochester.edu/encyclopedia/content.aspx?contenttypeid=167&contentid=creatinine_clearance_blood %
+    
+    \item Since the GFR is a continuous variable, I will use multiple linear regression (MLR) or generalized additive model to explore the association between GFR and PM\tsub{2.5} exposure. In detail, the health outcome (dependent variable) is the value of each patient's GFR, and the exposure is the average PM\tsub{2.5} concentration in each patient's ZIP code area in a short period (such as 1 week). If the exposure and confounders (covariates) are assumed to be linearly related to the GFR, a multiple linear regression model can be established
+    \begin{equation*}
+        GFR_i = \beta_0 + \beta_1 \times Avg\;PM2.5_i + \sum_{k=2}^m\beta_k\times C_{ki} \qquad i = 1,\ldots, n
+    \end{equation*}
+    where $i$ denotes each patient and $C_{k}$ denotes the confounders. If the independent variables are not linearly related to the GFR, a GAM can be established
+    \begin{equation*}
+        GFR_i = \beta_0 + f_1(Avg\;PM2.5_i) + \sum_{k=2}^mf_k(C_{ki}) \qquad i = 1,\ldots, n
+    \end{equation*}
+    where $f_k$ may be functions with a specified parametric form (\textit{e.g.,} a polynomial, or an un-penalized regression spline of a variable). Therefore, the linear or nonlinear dependence of GFR from PM\tsub{2.5} exposure can be assessed by calculating the increase in GFR triggered by the increase in PM\tsub{2.5} concentration.
+\end{enumerate*}
+
+\section{Biochemical markers used as indicators for acute renal failure}
+\begin{enumerate*}[{[a)]}]
+    \item {
+        \begin{enumerate*}[{[1)]}]
+            \item \textbf{Urea}: Urea, also known as carbamide (\ce{CO(NH2)2}), is a waste product formed in the liver when protein is metabolized into its component parts (amino acids). This process produces ammonia, which is then converted into the less toxic waste product urea. When released by the liver into the blood, urea is carried to the kidneys, where it is filtered out of the blood and released into the urine. Most diseases or conditions that affect the kidneys have the potential to affect the amount of urea present in the blood. If the kidneys are not working properly and have difficulty filtering wastes out of the blood, then urea concentrations will rise in the blood. Therefore, the plasma/serum levels of urea can reflect glomerular filtration rate (GFR) \citep{levey1999more}.
+            \item \textbf{Cystatin C}: Cystatin C (Cys-C) is a 13-kDa protein that was initially known as interalia $\gamma$-trace, post-$\gamma$-globulin, and gamma-CSF and is believed to be one of the most important extracellular inhibitors of cysteine proteases \citep{vaidya2008biomarkers}. It is produced throughout the body by all nucleated cells with a stable production rate and is found in a variety of body fluids, including the blood. In healthy subjects, plasma Cys-C is excreted through glomerular filtration and metabolized completely by the proximal tubules \citep{de2012biomarkers}. However, if kidney function and glomerular filtration rate (GFR) decline, the blood levels of cystatin C will rise. Unlike creatinine, cystatin C is not significantly affected by muscle mass (hence, sex or age), race, or diet, which has led to the idea that it could be a more reliable marker of kidney function and potentially used to generate a more precise estimate of GFR \citep{dharnidharka2002serum, roos2007diagnostic}. 
+            \item \textbf{NGAL}: Neutrophil gelatinase-associated lipocalin (NGAL) is a 25-kDa protein initially identified bound to gelatinase in specific granules of the neutrophil. NGAL is synthesized during a narrow window of granulocyte maturation in the bone marrow \citep{borregaard1995biosynthesis}, but also may be induced in epithelial cells in the setting of inflammation or malignancy \citep{nielsen1996induction}. In the case of acute kidney injury (AKI), NGAL is secreted in high levels into the blood and urine within 2 hours of injury \citep{bennett2008urine}. NGAL levels in patients with AKI have been associated with the severity of their prognosis and can be used as a biomarker for AKI \citep{han2009urinary}. Compared to the serum creatinine level, the NGAL level is a more precise and sensitive marker for diagnosing AKI. 
+        \end{enumerate*}
+    }
+    \item Similar to creatinine, these three indicators also reflect the severity of kidney function or injury, so they can be incorporated into the same models as which of creatinine-derived eGFR to investigate the association between PM\tsub{2.5} exposure and acute renal failure. For urea and Cys-C, they can be used to calculated eGFR and be treated as a dependent variable in a multiple linear regression model or a generalized additive model. For NGAL, it can be directly used as the dependent variable in the models. Therefore, the linear or nonlinear dependence of kidney function or injury from PM\tsub{2.5} exposure can be assessed by calculating the increase in the values of the indicators triggered by the increase in PM\tsub{2.5} concentration.
+\end{enumerate*}
+
+
 % ----------- Figures & Tables ----------- %
 \newpage
-\begin{table}[H]
-    \centering
-    \caption{Spatial and temporal resolutions of the data sources}
-    \begin{tabular}{c|c|c|c}
-        \hline
-        \multicolumn{2}{c|}{Data Source} & Spatial Resolution & Temporal Resolution \\
-        \hline
-        \multirow{2}{*}{Satellite/CTM} & MAIAC AOD & 1 km & $<$ 1 day \\
-        & CMAQ Simulation & 12 km & 1 hour \\
-        \hline
-        \multirow{4}{*}{Meteorology} & MODIS Cloud & 1 km & $<$ 1 day \\
-        & MODIS Snow & 0.05$^{\circ}$ ($\sim$ 5 km) & $<$ 1 day \\
-        & NARR & 0.25$^{\circ}$ ($\sim$ 25 km) & 3 hours\\
-        & NLDAS & 0.125$^{\circ}$ ($\sim$ 13 km) & 1 hour \\
-        \hline
-        \multirow{4}{*}{Land-Use} & ASTER Elevation & 1$^{\prime\prime}$ ($\sim$ 30 m) & -- \\
-        & LandScan Population & 900 m & 1 year \\
-        & MODIS NDVI & 500 m & 16 days \\
-        & ESRI Road Network (vector) & -- & 1 year \\
-        \hline
-        \multirow{3}{*}{Point Data} & NEI PM\tsub{2.5} Emissions  & -- & 3 years \\
-        & EPA/NAPS PM\tsub{2.5} & -- & 1 day \\
-        & PrupleAir PM\tsub{2.5} & -- & $<$ 1 hour \\
-        \hline
-    \end{tabular}
-    \label{tab:res}
-\end{table}
 
 \begin{figure}[H]
     \centering
@@ -220,9 +265,44 @@ Furthermore, it is plausible that one or more of the following mechanistic pathw
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{img/purpleair.jpg}
-    \caption{The distribution of PurpleAir low-cost sensors in the United States (Jun 19th, 2018)}
+    \caption{The distribution of PurpleAir low-cost sensors in the United States (acquired on Jun 19th, 2018)}
     \label{fig:pa}
 \end{figure}
+
+\begin{table}[H]
+\centering
+    \begin{threeparttable}
+        \caption{Spatial and temporal resolutions of the data sources}
+        \label{tab:res}
+        \begin{tabular}{c|c|c|c}
+            \hline
+            \multicolumn{2}{c|}{Data Source} & Spatial Resolution & Temporal Resolution \\
+            \hline
+            \multirow{2}{*}{Satellite/CTM} & MAIAC AOD & 1 km & $<$ 1 day\tnote{a} \\
+            & CMAQ Simulation & 12 km & 1 hour \\
+            \hline
+            \multirow{4}{*}{Meteorology} & MODIS Cloud & 1 km & $<$ 1 day \\
+            & MODIS Snow & 0.05$^{\circ}$ ($\sim$ 5 km)\tnote{b} & $<$ 1 day \\
+            & NARR & 0.25$^{\circ}$ ($\sim$ 25 km) & 3 hours\\
+            & NLDAS & 0.125$^{\circ}$ ($\sim$ 13 km) & 1 hour \\
+            \hline
+            \multirow{4}{*}{Land-Use} & ASTER Elevation & 1$^{\prime\prime}$ ($\sim$ 30 m) & -- \\
+            & LandScan Population & 900 m & 1 year \\
+            & MODIS NDVI & 500 m & 16 days \\
+            & ESRI Road Network\tnote{c} & -- & 1 year \\
+            \hline
+            \multirow{3}{*}{Point Data} & NEI PM\tsub{2.5} Emissions  & -- & 3 years \\
+            & EPA/NAPS PM\tsub{2.5} & -- & 1 day \\
+            & PrupleAir PM\tsub{2.5} & -- & $<$ 1 hour \\
+            \hline
+        \end{tabular}
+        \begin{tablenotes}
+            \item [a] Depending on how many times the satellite scans the location in a day 
+            \item [b] The distance in kilometers is estimated in 40$^{\circ}$ latitude
+            \item [c] The road network is a vector dataset without spatial resolution
+        \end{tablenotes}
+    \end{threeparttable}
+\end{table}
 
 % ----------- References ----------- %
 \newpage
