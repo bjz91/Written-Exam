@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[left=0.8in,right=0.8in,top=0.7in,bottom=0.7in]{geometry}
 \usepackage[numbers]{natbib}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -17,12 +17,12 @@
 
 
 % Header
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}%Clear all heads and foots
-\setlength{\headheight}{40pt} %Eliminate the warning of "headheight is too samll"
-\rhead{Written Exam Answers\\Jianzhao Bi\\\today}
-\cfoot{\thepage}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}%Clear all heads and foots
+%\setlength{\headheight}{40pt} %Eliminate the warning of "headheight is too samll"
+%\rhead{Written Exam Answers\\Jianzhao Bi\\\today}
+%\cfoot{\thepage}
 
 % Set font size for "section"
 \usepackage{sectsty}
@@ -139,7 +139,46 @@ Furthermore, it is plausible that one or more of the following mechanistic pathw
     \item \textbf{Other potential confounders}: Some well-understand confounders, such as season, day of week, holidays, temperatures, and time trends, will be selected \textit{a priori} as the covariates in our time-series model. However, there may still be other potential confounders affecting the relationship between PM\tsub{2.5} exposure and renal disease, leading to heterogeneity in results across individual cities. 
 \end{enumerate*}
 
-\section{Measurement error in the PM2.5 estimates and the ED visit data}
+\section{Measurement errors in the \texorpdfstring{PM\tsub{2.5}}{PM2.5} estimates and the ED visit data}
+\begin{enumerate*}[{[a)]}]
+    \item The measurement errors of satellite aerosol optical depth (AOD) can come from the receiving of raw signals and the retrieval process. The random and/or systematic biases of the satellite sensors and other atmospheric and geometric interference may induce errors in raw signals. After recording raw signals, AOD will be estimated by specific algorithms (also called ``retrieval''). This process will also induce some errors due to the reliability of algorithms and other input data. 
+    
+    The regulatory PM\tsub{2.5} measurements (\textit{e.g.,} EPA AQS measurements) are always treated as the ``gold standard'' of PM\tsub{2.5} concentrations since they have been developed to a clearly defined standard for PM\tsub{2.5} and have completed a rigorous testing and analysis protocol before they can be used to monitor compliance for the air quality standards \citep{hall2014integrating}. However, their measurements may not always represent the pollution level in its surrounding area because they may be affected by short-term pollution events (\textit{e.g.,} heating, ventilation, obstruction \textit{etc.}) in their nearby microenvironments \citep{carvlin2017development}. This is a kind of regulatory monitor's ``measurement error''.
+    
+    Most of the current low-cost sensors (including PurpleAir) use laser reflections to count particles in the air, and then these particle counts are processed by the sensors to calculate the PM\tsub{2.5} mass. The measurement errors can come from these two processes. First, the particle counts may have a relatively large inaccuracy \citep{northcross2013low}. In addition, the conversion from particle counts to particle mass may also be affected by some factors, such as PM composition, temperature, and relative humidity \citep{ gao2015distributed, carvlin2017development}, leading to additional errors. Moreover, as the regulatory monitors, the low-cost sensors may also suffer from the short-term pollution events in nearby microenvironments, thus having less representativeness of their surrounding pollution levels. 
+    
+    For the emergency department (ED) visit data, inaccurate coding is a major source of measurement error. For example, kidney disease tends not to be coded as primary diagnosis even though sometime it may be a major but potential reason for the admission. In addition, incorrect diagnosis is also a possible reason for the measurement error in ED visit data. 
+    
+    \item All of the aforementioned measurement errors can be referred to as ``misclassification'', and all of them can affect the results from the health impact analysis. The measurement errors of satellite and ground monitors are the misclassification of exposure, and the measurement errors of ED visit data are the misclassification of disease. Since the misclassification of PM\tsub{2.5} exposure is the same for those with renal disease as it is for those without renal disease, this kind of misclassification is non-differential and the bias of the health effect tends to be towards the null \citep{sarnat2015fine}. Similarly, the pollution level is in general not associated with the diagnosis accuracy of doctors, so the misclassification of outcome may also be non-differential, that is, the bias tends to be towards the null as well. Overall, the measurement errors of PM\tsub{2.5} monitors and ED visit data can generally lead to the underestimation of the adverse health effect of PM\tsub{2.5}.
+    
+    \item An ideal PM\tsub{2.5} exposure dataset should include: {
+        \begin{itemize*}
+            \item \textbf{Pollutant sources}: Where are the PM\tsub{2.5} coming from, at what rate? What are the indoor and outdoor PM\tsub{2.5} concentrations? What is the composition of these particulate matters?
+            \item \textbf{Population of concern}: Who are the individuals that are exposed? How are the factors of the population relating to the dose of pollutant (\textit{e.g.,} age, sex, body weight, \textit{etc.})? 
+            \item \textbf{Exposure pathways}: Through which pathways is the population exposed to PM\tsub{2.5}? What proportion of PM\tsub{2.5} is exposed through inhalation?
+            \item \textbf{Activity patterns}: How much time the population stay indoor and outdoor? What are the population's exposure duration and frequency? 
+            \item \textbf{Inhalation rates}: What are the inhalation rates of the population according to the age, sex and activity pattern?
+        \end{itemize*}
+    }
+\end{enumerate*}
+
+\section{Benefits and limitations of the direct measurement of individual exposure}
+\begin{itemize*}
+    \item Benefits {
+        \begin{enumerate*}[{[(1)]}]
+            \item Direct personal monitoring is the most accurate means of exposure assessment. Regulatory measurements are subject to biases because most people spend much more of their time indoors than out, and air pollutant concentrations are often much higher inside buildings than outside \citep{spengler1983indoor}. In addition, the time people spend in different locations and their activities vary dramatically with age, gender, occupation, and socioeconomic status, causing difficulty in adequately characterize the pollutants they are exposed to. In contrast, a personal exposure depends on the air pollutant concentrations that are present in the locations the person moves through as well as on the time spent in each location. This approach allows the exposure assessment for a specified group of people with widely different time-activity patterns \citep{watson1988air}. 
+            \item The health effect study at the individual-level is able to more precisely reflect the association between PM\tsub{2.5} exposure and ED visit for kidney disease. In the case of region/community-level study, it is unknown that if the patients visiting the emergency department have indeed been exposed to high-level PM\tsub{2.5}. It is possible that the higher-level PM\tsub{2.5} pollution is accidentally associated with an increased number of ED visit for renal disease. On the contrary, individual-level study will establish a more powerful causal link between the individually experienced PM\tsub{2.5} levels and ED visits.
+            \item If study participants maintain records of their activities, then locations where highest concentrations occur as well as the nature of emission sources can often be inferred. This is a helpful reference for the community to reasonably deploy regulatory air quality monitoring stations \citep{watson1988air}.  
+        \end{enumerate*}
+    }
+    \item Limitations {
+        \begin{enumerate*}[{[(1)]}]
+            \item Personal monitoring studies are complex, expensive, time-consuming, and labor-intensive. Compared to the community-level study, it is more difficult to recruit larger populations in a wider area to conduct similar analyses, which can significantly limit the power and the generalizability of the study. 
+            \item It tends to have problems regarding the selection and recruitment of representative subjects. Personal exposure monitoring is an intrusive event in the life of the study participants. The demands of the project protocol and the associated inconvenience may cause many people to refuse to cooperate, leading to high dropout rates. In addition, it is particularly difficult to get the cooperation of schoolchildren, non-native speakers, disadvantaged people, or those with low socioeconomic status \citep{watson1988air}. These problems may lead to the selection bias in the study population and affect the generalizability of the estimated health effects. 
+            \item Wearing a monitor or filling out a log can cause the participant to change his or her behavior and consequently introduce more biases in the estimated effects \citep{ryan1986estimating}.
+        \end{enumerate*}
+    }
+\end{itemize*}
 
 % ----------- Figures & Tables ----------- %
 \newpage
@@ -163,7 +202,7 @@ Furthermore, it is plausible that one or more of the following mechanistic pathw
         & MODIS NDVI & 500 m & 16 days \\
         & ESRI Road Network (vector) & -- & 1 year \\
         \hline
-        \multirow{3}{*}{Point Data} & NEI PM\tsub{2.5} Inventory  & -- & 3 years \\
+        \multirow{3}{*}{Point Data} & NEI PM\tsub{2.5} Emissions  & -- & 3 years \\
         & EPA/NAPS PM\tsub{2.5} & -- & 1 day \\
         & PrupleAir PM\tsub{2.5} & -- & $<$ 1 hour \\
         \hline
