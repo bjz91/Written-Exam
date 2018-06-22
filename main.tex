@@ -12,6 +12,8 @@
 \usepackage{enumerate} % Enabling options for list environments
 \usepackage{float}
 \usepackage{multirow}
+\usepackage{dashrule}
+\usepackage[version=4]{mhchem}
 
 
 % Header
@@ -29,9 +31,11 @@
 % Define a new command for text subscript
 \newcommand{\tsub}{\textsubscript}
 
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+
 \begin{document}
 
-\section*{To Dr. Avani Wildani}
 \setcounter{section}{0}
 
 \section{In a single-sentence, how would you define your research question?}
@@ -62,7 +66,7 @@
 
 \section{In your words, describe the specific parameter selection strategy for Equation 2}
 
-\section*{To Dr. Stefanie Sarnat}
+\hdashrule{\textwidth}{0.1pt}{3mm 3pt 1mm 3pt}
 \setcounter{section}{0}
 
 \section{How generalizable do you anticipate the \texorpdfstring{PM\tsub{2.5}}{PM2.5} models in Aims 1 and 2 to be?}
@@ -86,12 +90,12 @@ The most important factor having to be concerned about before using the data of 
 \end{enumerate*}
 
 \section{How you will determine whether or not given \texorpdfstring{PM\tsub{2.5}}{PM2.5} exposures are ``reliable''?}
-In this study, the ``reliability'' of PM\tsub{2.5} exposures are defined from three aspect: (1) spatiotemporal completeness, (2) statistical reliability, and (3) improvement of actual reliability in populated areas.
-\begin{itemize*}
+In this study, the ``reliability'' of PM\tsub{2.5} exposures is defined from three aspects: (1) spatiotemporal completeness, (2) statistical reliability, and (3) improvement of actual reliability in populated areas.
+\begin{enumerate*}[{[1)]}]
     \item First, our PM\tsub{2.5} exposure dataset has 1-km, daily resolutions with complete coverage in space and time. In general, the routine measurements made by local and federal monitoring programs cannot provide continuous, daily availability, which limits their usefulness for studies of associations between health outcomes and daily variations in pollutant concentrations \citep{sarnat2015fine}. On the contrary, the spatiotemporal completeness enables the application of our exposure dataset to the health analyses of associations between health outcomes and short-term pollution exposure. 
     \item In addition, the good statistical performance of our prediction models is an important standard to assess the reliability of the exposure dataset. We will use cross-validations (CV) as the evaluation method of model performance. This method involves partitioning the input data into complementary subsets, performing the analysis on one subset (called the \textit{training set}), and validating the analysis on the other subset (called the \textit{validation set} or \textit{testing set}) \citep{kohavi1995study}. It aims to test the model's ability to predict new data that were not used in estimating it, rather than the model fitting ability, in order to avoid the problem of overfitting \citep{hawkins2004problem}. Similar studies using statistical models \citep{kloog2011assessing, kloog2014new} and machine learning models \citep{di2016assessing, hu2017estimating} obtain PM\tsub{2.5} predictions with CV R$^2$ of $\sim$0.8 and root-mean-square error (RMSE) of $\sim$3 $\mu g/m^3$. The preliminary results of this study showed that our prediction models are expected to have similar or even better statistical performance than the previous studies. 
     \item Admittedly, good statistical performance does not necessarily mean good actual performance. Specifically, the cross-validation can only evaluate the actual model performance in the areas with regulatory stations, such as cities and populated areas. In other words, the model performance is unknown in the areas without regulatory stations, such as wild areas. However, since our goal is to analyze the health effect of PM\tsub{2.5} on the population, the unknown data quality in wild areas, where there are few populations exposing to the pollutant, are expected to have less influence on our estimated health effects. Moreover, the low-cost sensors will further fill in the gaps of regulatory stations, providing more spatial details of local pollution levels in populated areas. With high cross-validation performance and the supplementation of low-cost sensors, our prediction models are expected to guarantee the actual reliability of exposure assessment for the majority of population exposing to PM\tsub{2.5} pollution. 
-\end{itemize*}
+\end{enumerate*}
 
 \section{Temporal and spatial misalignment among the proposed data sources}
 \begin{enumerate*}[{[a)]}]
@@ -107,10 +111,35 @@ In this study, the ``reliability'' of PM\tsub{2.5} exposures are defined from th
     }
 \end{enumerate*}
 
-\section*{To Dr. Vaughn Barry}
+\hdashrule{\textwidth}{0.1pt}{3mm 3pt 1mm 3pt}
 \setcounter{section}{0}
 
 \section{How could short-term exposure to \texorpdfstring{PM\tsub{2.5}}{PM2.5} cause acute kidney problems?}
+Acute renal failure (ARF) is an abrupt loss of kidney function that develops within 7 days. Generally, it occurs because of damage to the kidney tissue caused by decreased kidney blood flow (kidney ischemia) from any cause (\textit{e.g.,} low blood pressure), exposure to substances harmful to the kidney, an inflammatory process in the kidney, or an obstruction of the urinary tract that impedes the flow of urine. Interest in the nonpulmonary targets of particulate air pollutants has been increasing since the demonstration that inhaled ultrafine particles (UFP) can affect distant organs either by direct passage across the alveolar capillary barrier and/or by the release of soluble inflammatory mediators and markers of oxidative stress into the systemic circulation, which may affect several distant organs including the kidney \citep{nemmar2004possible, oberdorster2005nanotoxicology, peters2006translocation, vermylen2005ambient, nemmar2013recent}. 
+
+It is hypothesized that renal function impairment may be a mediating factor of the cardiovascular effects of PM\tsub{2.5} exposure because the kidney is a vascularized organ susceptible to large-vessel atherosclerotic disease and microvascular dysfunction \citep{lue2013residential}. Three distinct hypotheses have been proposed to explain the epidemiologic observations of a relationship between PM2.5 and cardiovascular outcomes; these may also be pertinent in the evaluation of renal outcomes \citep{bowe2018particulate}:
+\begin{enumerate*}[{[1)]}]
+    \item Inhaled particles provoke pulmonary inflammation which may then lead to systemic inflammation \citep{chin2014basic}, including kidney. 
+    \item The mechanism involves pollutant-induced disturbances in the lung autonomic nervous system \citep{chin2014basic}. Specifically, the inhalation of particles may trigger a reflex that leads to a subtle change in the rhythm of the heart. When the heart is no longer pumping efficiently it becomes congested with blood, causing pressure to build up in the main vein connected to the kidneys and leading to congestion of blood in the kidneys. The kidneys also suffer from the reduced supply of oxygenated blood \citep{kazory2009anemia}. 
+    \item Air-borne particulates enter the bloodstream where they may then interact with tissue components to promote the observed pathologic effects. This is supported by emerging evidence suggesting that inhaled inert gold nanoparticles not only enter the bloodstream of healthy adult volunteers, but are detected in the urine within minutes after exposure, providing a proof of concept that inhaled nanoparticles get filtered and excreted by the kidney \citep{chin2014basic, miller2017inhaled}.
+\end{enumerate*}
+Furthermore, it is plausible that one or more of the following mechanistic pathways may explain the aforementioned hypotheses regarding the association between the exposure to PM\tsub{2.5} and kidney disease:
+\begin{enumerate*}[{[1)]}]
+    \item Increased inflammatory mediators (including TNF-$\alpha$, IL-6, and PAI-1), oxidative stress \citep{ostro2014chronic, ruckerl2014associations, sorensen2003personal}, increased atherosclerotic plaque area, and exaggerated vasoconstrictor responses to phenylephrine and serotonin \citep{sun2005long}.
+    \item Significant decrease in flow-mediated dilatation \citep{krishnan2012vascular, wilker2014relation}, increases in systolic BP and pulse pressure \citep{auchincloss2008associations, fuks2014arterial, fuks2011long}, and disturbances in the hypothalamic-pituitary-adrenal axis \citep{thomson2013mapping}.
+    \item  Metabolic disturbances, including glucose intolerance, decreased insulin sensitivity, higher blood lipid concentrations, weight gain, and increased risk of diabetes mellitus \citep{wei2016chronic, chen2016ambient, wolf2016association}.
+\end{enumerate*}
+
+\section{Heterogeneity of exposure-health outcome results across cities or states}
+\begin{enumerate*}[{[1)]}]
+    \item \textbf{Sample size}: Different cities may have different sample sizes (in this case, the number of emergency department visits). A small sample size can lead to a less power of the model and a larger confident interval of the estimated effect, which would increase the uncertainty of the result. In addition, a small sample size would also lead to selection bias, that is, the study population is meaningfully different from the source population. This would also induce large errors to the estimated effect, leading to heterogeneity in results across individual cities. 
+    \item \textbf{Socioeconomic characteristics}: Populations in different cities may have different distributions of socioeconomic characteristics, which would be the potential effect modifiers of the associations between PM\tsub{2.5} exposure and renal outcomes. These characteristics include age, sex, race, education level, income level, marital status, occupation, religion, birth rate, death rate, average size of a family, average age at marriage, \textit{etc.} Specifically, \citet{janssen2002air} and \citet{medina2006effect} found that the proportion of central air conditioning modified the effect of PM\tsub{10} on hospital admissions for cardiorespiratory disease, a possible reason for which might be the lower ventilation rates of homes with air conditioning \citep{suh1992personal}. 
+    \item \textbf{PM\tsub{2.5} sources}: The same PM\tsub{2.5} component may come from different sources. For example, secondary sulfate (\ce{SO^{2-}_4}) can be generated from sulfur dioxide (\ce{SO2}) emissions from power plants, industrial facilities, and traffic sources. Particulate matters from different sources may have different levels of health effects. For example, studies \citep{laden2000association, zeka2005short} found that PM\tsub{10} and PM\tsub{2.5} from mobile sources were associated with a higher mortality risk than particulate matters from other sources. the There is also evidence that the hazardous nature of combustion-related PM (from both mobile and stationary sources) is more consistent than that for PM from other sources \citep{world2007health}.
+    \item \textbf{Synergy effect of gaseous pollutants}: Gaseous pollutants have health effects of their own and may act in concert with PM to cause health effects (\textit{e.g.,} ozone). Any consideration of the health effects of different components and sources of PM must consider how gaseous pollutants may affect the toxicity of PM constituents \citep{adams2015particulate}.
+    \item \textbf{Other potential confounders}: Some well-understand confounders, such as season, day of week, holidays, temperatures, and time trends, will be selected \textit{a priori} as the covariates in our time-series model. However, there may still be other potential confounders affecting the relationship between PM\tsub{2.5} exposure and renal disease, leading to heterogeneity in results across individual cities. 
+\end{enumerate*}
+
+\section{Measurement error in the PM2.5 estimates and the ED visit data}
 
 % ----------- Figures & Tables ----------- %
 \newpage
